@@ -1,0 +1,44 @@
+# start of relevant portion of the route.yml file
+#################################################
+
+id: default
+routes:
+  - id: dXJuBy
+    name: VPCFlowlogs
+    final: true
+    disabled: false
+    pipeline: aws-vpcflowlogs
+    filter: origin == 'lambda:vpcflowlogs'
+    description: ""
+    clones:
+      []
+  - id: B8WY7f
+    name: ElasticLoadBalancing
+    final: true
+    disabled: false
+    pipeline: aws-elasticloadbalancing
+    filter: origin == 'lambda:elb'
+    description: ""
+    clones:
+      []
+  - id: DMxkf7
+    name: CloudFront
+    final: true
+    disabled: false
+    pipeline: aws-cloudfront
+    filter: origin == 'lambda:cloudfrontlogs'
+    description: ""
+    clones:
+      []
+  - id: 2E3oxp
+    name: CloudTrail
+    final: true
+    disabled: false
+    pipeline: aws-cloudtrail
+    filter: origin == 'lambda:cloudtrail'
+    description: ""
+    clones:
+      []
+
+###############################################
+# end of relevant portion of the route.yml file

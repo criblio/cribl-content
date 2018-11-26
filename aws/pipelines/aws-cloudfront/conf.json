@@ -1,0 +1,59 @@
+{
+  "id": "cloudfrontlogs",
+  "conf": {
+    "asyncFuncTimeout": 1000,
+    "output": "default",
+    "description": "Pipeline to process AWS CloudFront logs events delivered via Lambda",
+    "functions": [
+      {
+        "filter": "true",
+        "id": "eval",
+        "description": "Set index and sourcetype",
+        "conf": {
+          "add": [
+            {
+              "name": "index",
+              "value": "'aws_lambda'"
+            },
+            {
+              "name": "sourcetype",
+              "value": "'aws:cloudfront:accesslogs'"
+            }
+          ]
+        }
+      },
+      {
+        "filter": "sc_status=='200'",
+        "id": "sampling",
+        "description": "Sample events with HTTP status (sc_status) at 5:1",
+        "disabled": false,
+        "conf": {
+          "rules": [
+            {
+              "filter": "true    ",
+              "rate": 5
+            }
+          ]
+        }
+      },
+      {
+        "filter": "true",
+        "id": "comment",
+        "conf": {
+          "comment": "The Lambda function delivers Cloudfront logs with all its fields extracted.\n\n* To send to Splunk as-is (with index-time fields) disable the Eval functions below.\n* To send to Splunk only raw events and rely on search-time CIM fields, enable it."
+        }
+      },
+      {
+        "filter": "true",
+        "id": "eval",
+        "description": "Remove Cloudfront native fields (index-time). Leave event/_raw intact. ",
+        "disabled": false,
+        "conf": {
+          "keep": [
+            "_raw"
+          ]
+        }
+      }
+    ]
+  }
+}

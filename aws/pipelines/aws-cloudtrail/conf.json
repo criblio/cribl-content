@@ -1,0 +1,51 @@
+{
+  "id": "cloudtrail",
+  "conf": {
+    "asyncFuncTimeout": 1000,
+    "output": "default",
+    "description": "Pipeline to process AWS Cloudtrail logs events delivered via Lambda",
+    "functions": [
+      {
+        "filter": "true",
+        "id": "eval",
+        "description": "Set index and sourcetype",
+        "conf": {
+          "add": [
+            {
+              "name": "index",
+              "value": "'aws_lambda'"
+            },
+            {
+              "name": "sourcetype",
+              "value": "'aws:cloudtrail'"
+            }
+          ]
+        }
+      },
+      {
+        "filter": "true",
+        "id": "regex_extract",
+        "description": "Extract _eventName from CloudTrail payload.",
+        "conf": {
+          "regex": "/eventName\":\"(?<__eventName>[^\"]+)/",
+          "source": "_raw"
+        },
+        "disabled": false
+      },
+      {
+        "filter": "true",
+        "id": "comment",
+        "conf": {
+          "comment": "Drop read-only events. These will contain _eventName should start with: Describe*, Get*, List*"
+        }
+      },
+      {
+        "conf": {},
+        "filter": "/(^Describe|^List|^Get)/.test(_eventName)",
+        "id": "drop",
+        "description": "Filter out read-only events",
+        "disabled": false
+      }
+    ]
+  }
+}

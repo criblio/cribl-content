@@ -3,7 +3,13 @@
 Log/Event processing pipelines for: 
 
 - AWS 
-  - (list of services will go here)
+  - Cloudtrail
+  - VPC FLow Logs
+  - Elastic Loadbalancing
+  - Cloudfront
 - Cisco
+  - (coming soon)
 - Palo Alto
+  - (coming soon)
 - Windows 
+  - (coming soon)

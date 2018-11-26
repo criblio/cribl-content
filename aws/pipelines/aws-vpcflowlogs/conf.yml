@@ -1,0 +1,101 @@
+asyncFuncTimeout: 1000
+output: default
+functions:
+  - id: eval
+    filter: "true"
+    disabled: null
+    conf:
+      add:
+        - name: index
+          value: >-
+            'aws_lambda'
+        - name: sourcetype
+          value: >-
+            'aws:cloudwatchlogs:vpcflow'
+    description: >-
+      Assign index and sourcetype
+  - id: sampling
+    filter: action=='ACCEPT'
+    disabled: false
+    conf:
+      rules:
+        - filter: "true"
+          rate: 5
+    description: Sample ACCEPT traffic 5:1
+  - id: comment
+    filter: "true"
+    disabled: null
+    conf:
+      comment: >-
+        The Lambda function delivers VPC Flow logs with all its fields
+        extracted.
+
+
+        * To send to Splunk as-is, disable both Eval functions below
+
+        * To send to Splunk with extracted index-time CIM fields, enable the first Eval and disable the second.
+
+        * To send to Splunk only raw events and rely on search-time CIM fields, disable the first Eval and enable the second.
+  - id: eval
+    filter: "true"
+    disabled: false
+    conf:
+      add:
+        - name: src_ip
+          value: srcaddr
+        - name: dest_ip
+          value: dstaddr
+        - name: src_port
+          value: srcport
+        - name: dest_port
+          value: dstport
+        - name: protocol_code
+          value: protocol
+        - name: start_time
+          value: start
+        - name: end_time
+          value: end
+        - name: vpcflow_action
+          value: action
+      remove:
+        - version
+        - account_id
+        - interface_id
+        - srcaddr
+        - dstaddr
+        - srcport
+        - dstport
+        - protocol
+        - packets
+        - bytes
+        - start
+        - end
+        - action
+        - log_status
+    description: Normalize/map VPC Flowlogs native fields to index-time Splunk CIM. Remove
+      native fields.
+    final: true
+  - id: eval
+    filter: "true"
+    disabled: true
+    conf:
+      add:
+        []
+      remove:
+        - version
+        - account_id
+        - interface_id
+        - srcaddr
+        - dstaddr
+        - srcport
+        - dstport
+        - protocol
+        - packets
+        - bytes
+        - start
+        - end
+        - action
+        - log_status
+    description: >-
+      Remove VPC Flowlogs native fields. Leave event/_raw intact.
+description: Pipeline to process AWS VPC Flow logs events delivered via Lambda

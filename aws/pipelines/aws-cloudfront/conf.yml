@@ -1,0 +1,46 @@
+asyncFuncTimeout: 1000
+output: default
+functions:
+  - id: eval
+    filter: "true"
+    disabled: false
+    conf:
+      add:
+        - name: index
+          value: >-
+            'aws_lambda'
+        - name: sourcetype
+          value: >-
+            'aws:cloudfront:accesslogs'
+    description: Set index and sourcetype
+  - id: sampling
+    filter: sc_status=='200'
+    disabled: false
+    conf:
+      rules:
+        - filter: >-
+            true
+          rate: 5
+    description: Sample events with HTTP status (sc_status) at 5:1
+  - id: comment
+    filter: "true"
+    disabled: false
+    conf:
+      comment: The Lambda function delivers Cloudfront logs with all its fields
+        extracted.
+
+
+        * To send to Splunk as-is (with index-time fields) disable the
+        Eval functions below.
+
+        * To send to Splunk only raw events and rely on search-time CIM
+        fields, enable it.
+  - id: eval
+    filter: "true"
+    disabled: false
+    conf:
+      keep:
+        - _raw
+    description: >-
+      Remove Cloudfront native fields (index-time). Leave event/_raw intact.
+description: Pipeline to process AWS CloudFront logs events delivered via Lambda
