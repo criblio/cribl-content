@@ -13,7 +13,7 @@
           "add": [
             {
               "name": "index",
-              "value": "'aws_lambda'"
+              "value": "'aws'"
             },
             {
               "name": "sourcetype",
