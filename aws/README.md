@@ -59,7 +59,6 @@ The field `origin` comes from the Lambda function (below).
 
 - Cribl configured to send events to their final destination.
 
-## License
+### License
 ---
-
 MIT License (MIT)
