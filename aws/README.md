@@ -41,10 +41,10 @@ These pipelines can be used to filter, clone, extract, sample, clone and general
 ---
 Route filter and pipeline assocation is provided in the `pipelines/route.yml` file. 
 
-`filter: origin == 'lambda:vpcflowlogs'` --> ` pipeline: aws-vpcflowlogs`
-`filter: origin == 'lambda:elb'` --> ` pipeline: aws-elasticloadbalancing`
-`filter: origin == 'lambda:cloudfrontlogs'` --> ` pipeline: aws-cloudfront`
-`filter: origin == 'lambda:cloudtrail'` --> ` pipeline: aws-cloudtrail`
+- `filter: origin == 'lambda:vpcflowlogs'` --> ` pipeline: aws-vpcflowlogs`
+- `filter: origin == 'lambda:elb'` --> ` pipeline: aws-elasticloadbalancing`
+- `filter: origin == 'lambda:cloudfrontlogs'` --> ` pipeline: aws-cloudfront`
+- `filter: origin == 'lambda:cloudtrail'` --> ` pipeline: aws-cloudtrail`
 
 The field `origin` comes from the Lambda function (below).
 
