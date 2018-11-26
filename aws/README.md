@@ -1,5 +1,6 @@
 ## Cribl Pipelines for various AWS logs 
 ----
+These pipelines can be used to filter, clone, extract, sample, clone and generally process AWS logs/events with Cribl.
 
 **Supported Services**
 - Amazon CloudFront - Access Logs are used to track access to CDN assets.
