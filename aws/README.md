@@ -58,7 +58,3 @@ The field `origin` comes from the Lambda function (below).
   - [Cribl-S3-Log-Collector](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:496698360409:applications~Cribl-S3-Log-Collector) Serverless App 
 
 - Cribl configured to send events to their final destination.
-
-### License
----
-MIT License (MIT)
