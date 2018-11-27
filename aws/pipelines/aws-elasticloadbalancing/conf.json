@@ -3,7 +3,6 @@
   "conf": {
     "asyncFuncTimeout": 1000,
     "output": "default",
-    "description": "Pipeline to process AWS ELB logs events delivered via Lambda",
     "functions": [
       {
         "filter": "true",
@@ -49,11 +48,28 @@
         "description": "Remove ELB native fields (index-time). Leave event/_raw intact. ",
         "disabled": false,
         "conf": {
-          "keep": [
-            "_raw"
+          "keep": [],
+          "remove": [
+            "timestamp",
+            "elb*",
+            "client*",
+            "backend*",
+            "*processing_time",
+            "*bytes",
+            "request*",
+            "user_agent",
+            "ssl*",
+            "type",
+            "trace_id",
+            "domain_name",
+            "chosen_cert_arn",
+            "matched_rule_priority",
+            "actions_executed",
+            "redirect_url"
           ]
         }
       }
-    ]
+    ],
+    "description": "Pipeline to process AWS ELB logs events delivered via Lambda"
   }
 }

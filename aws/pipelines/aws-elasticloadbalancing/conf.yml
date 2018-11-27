@@ -3,12 +3,12 @@ output: default
 functions:
   - id: eval
     filter: "true"
-    disabled: false
+    disabled: null
     conf:
       add:
         - name: index
           value: >-
-            'aws'
+            'aws_lambda'
         - name: sourcetype
           value: >-
             'aws:elb:accesslogs'
@@ -23,7 +23,7 @@ functions:
     description: Sample events with ELB and backend HTTP status 200 at 5:1
   - id: comment
     filter: "true"
-    disabled: false
+    disabled: null
     conf:
       comment: The Lambda function delivers ELB logs with all its fields extracted.
 
@@ -38,7 +38,26 @@ functions:
     disabled: false
     conf:
       keep:
-        - _raw
+        []
+      remove:
+        - timestamp
+        - elb*
+        - client*
+        - backend*
+        - >-
+          *processing_time
+        - >-
+          *bytes
+        - request*
+        - user_agent
+        - ssl*
+        - type
+        - trace_id
+        - domain_name
+        - chosen_cert_arn
+        - matched_rule_priority
+        - actions_executed
+        - redirect_url
     description: >-
       Remove ELB native fields (index-time). Leave event/_raw intact.
 description: Pipeline to process AWS ELB logs events delivered via Lambda
