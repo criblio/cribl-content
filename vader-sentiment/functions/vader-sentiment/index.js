@@ -2,8 +2,7 @@ const cLogger = C.util.getLogger('func:sentient');
 
 exports.name = 'Vader-Sentiment';
 exports.version = '0.1';
-//exports.group = 'NLTK';
-exports.group = 'Extreme Vigilance RealTime';
+exports.group = 'Demo Functions';
 
 const vader = require ('vader-sentiment');
 

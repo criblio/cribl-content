@@ -2,7 +2,7 @@ const cLogger = C.util.getLogger('func:rename');
 
 exports.name = 'Rename';
 exports.version = '0.1';
-exports.group = 'Extreme Vigilance RealTime';
+exports.group = 'Demo Functions';
 
 let _renameFields = [];
 
@@ -10,7 +10,7 @@ exports.init = (opts) => {
   conf = opts.conf || {};
 
   if (!conf.fields || conf.fields.length < 1) {
-     cLogger.error ("Invalid arguments - Must specify either queueName or topicName!", { conf });
+     cLogger.error ("Invalid arguments - Must specify at least 1 field to rename!", { conf });
      return;
   }
 
@@ -19,15 +19,13 @@ exports.init = (opts) => {
   for (var i = 0; i < conf.fields.length; i++)
   {
     let field = conf.fields[i]; 
-    cLogger.info ("Field: " + JSON.stringify (field));
-
     let fieldName = field['fieldName'];
     let renameTo = field['renameTo'];
     _renameFields.push ([fieldName,renameTo]); 
     cLogger.info ("Added rename field: " + fieldName + " => " + renameTo);
   }
 
-  cLogger.info ("Rename fields: " + _renameFields);
+  cLogger.info ("Loaded Rename fields: " + _renameFields);
 };
 
 exports.unload = () => {
