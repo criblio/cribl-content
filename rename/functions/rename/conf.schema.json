@@ -19,8 +19,7 @@
           "renameTo": {
             "type": "string",
             "title": "New Field Name",
-            "description": "New field name",
-            "jsExpression": true
+            "description": "New field name"
           }
         }
       }

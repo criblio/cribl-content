@@ -6,11 +6,13 @@
     "inputField": {
       "type": "string",
       "title": "Input Field",
-      "description": "The name of the event field that contains text to run Sentiment with"
+      "default": "comment",
+      "description": "The name of the event field that contains text to run sentiment analysis with."
     },
     "outputField": {
       "type": "string",
       "title": "Output Field",
+      "default": "sentiment_score",
       "description": "The name of the output field to assign sentiment score (-1 to 1) to."
     }
   }

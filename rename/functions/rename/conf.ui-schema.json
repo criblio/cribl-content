@@ -2,13 +2,12 @@
   "fields": {
     "ui:field": "Table",
     "items": {
-      "name": {
+      "fieldName": {
         "ui:options": {
           "columnWidth": "50%"
         }
       },
-      "value": {
-        "ui:widget": "JsInput",
+      "renameTo": {
         "ui:options": {
           "columnWidth": "50%"
         }

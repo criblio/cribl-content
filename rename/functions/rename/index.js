@@ -18,9 +18,9 @@ exports.init = (opts) => {
 
   for (var i = 0; i < conf.fields.length; i++)
   {
-    let field = conf.fields[i]; 
-    let fieldName = field['fieldName'];
-    let renameTo = field['renameTo'];
+    let field = conf.fields[i];
+    let fieldName = field.fieldName;
+    let renameTo = field.renameTo;
     _renameFields.push ([fieldName,renameTo]); 
     cLogger.info ("Added rename field: " + fieldName + " => " + renameTo);
   }
@@ -47,7 +47,7 @@ exports.process = (event) => {
           if (fieldName && renameTo && event.hasOwnProperty (fieldName)) {
 
              let value = event [fieldName];
-             delete event [fieldName];
+             event [fieldName] = undefined;
              event [renameTo] = value;
 
              //cLogger.debug ("Event Has field: " + fieldName + ", renamed to: " + renameTo);
