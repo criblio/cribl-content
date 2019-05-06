@@ -1,0 +1,18 @@
+{
+    "add": {
+        "ui:field": "Table",
+        "items": {
+            "name": {
+                "ui:options": {
+                    "columnWidth": "30%"
+                }
+            },
+            "value": {
+                "ui:widget": "JsInput",
+                "ui:options": {
+                    "columnWidth": "70%"
+                }
+            }
+        }
+    }
+}

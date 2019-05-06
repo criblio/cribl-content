@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "title": "",
+    "additionalProperties": false,
+    "properties": {
+        "htmlField": {
+            "type": "string",
+            "title": "HTML Field",
+            "description": "Field which contains HTML to load into the DOM",
+            "default": "_raw"
+        },
+        "add": {
+            "title": "Evaluate Fields",
+            "description": "Set of key-value pairs to evaluate and add/set",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "value"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name",
+                        "description": "Field Name"
+                    },
+                    "value": {
+                        "type": "string",
+                        "title": "Value Expression",
+                        "description": "JavaScript expression to compute the value (can be constant)",
+                        "jsExpression": true
+                    }
+                }
+            }
+        }
+    }
+}

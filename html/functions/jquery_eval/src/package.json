@@ -1,0 +1,17 @@
+{
+  "name": "gen",
+  "version": "0.0.1",
+  "description": "Extract values from HTML/XML content using JQuery Selectors",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cp conf*.json ../build && webpack --config webpack.config.js"
+  },
+  "author": "Clint Sharp",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "jsdom": "^15.0.0"
+  },
+  "devDependencies": {}
+}
