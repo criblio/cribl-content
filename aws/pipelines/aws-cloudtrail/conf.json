@@ -28,7 +28,8 @@
         "description": "Extract _eventName from CloudTrail payload.",
         "conf": {
           "regex": "/eventName\":\"(?<__eventName>[^\"]+)/",
-          "source": "_raw"
+          "source": "_raw",
+          "iterations": 1
         },
         "disabled": false
       },
