@@ -19,6 +19,7 @@ functions:
     conf:
       regex: /eventName":"(?<__eventName>[^"]+)/
       source: _raw
+      iterations: 1
     description: Extract _eventName from CloudTrail payload.
   - id: comment
     filter: "true"
