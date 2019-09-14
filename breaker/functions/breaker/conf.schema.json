@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "title": "",
+  "required": ["regex"],
+  "properties": {
+    "regex": {
+      "type": "string",
+      "title": "Regex",
+      "description": "Regex literal with one named capturing group, e.g. pre(toKeep)post",
+      "regexp": true
+    },
+    "source": {
+      "type": "string",
+      "title": "Source Field",
+      "description": "Field used to break the event on",
+      "default": "_raw"
+    },
+    "iterations": {
+      "type": "number",
+      "title": "Max Events",
+      "description": "The maximum number of times to apply RegEx to source field.",
+      "default": 100,
+      "minimum" : 1
+    }
+  }
+}

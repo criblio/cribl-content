@@ -1,0 +1,9 @@
+{
+  "regex": {
+    "ui:widget": "RegexInput",
+    "ui:placeholder": "Regular expression",
+    "ui:options": {
+      "eventFieldProperty": "source"
+    }
+  }
+}
