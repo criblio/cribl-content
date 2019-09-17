@@ -18,7 +18,7 @@ exports.init = (opts) => {
     if(result.groups !== 2)
       throw new Error('regex must have one capturing group');
     // force global flag
-    if(!(result.flags || '').includes('g')
+    if(!(result.flags || '').includes('g'))
       conf.regex = `${conf.regex}g`;
     regex = new NamedGroupRegExp(conf.regex);
   } else {
