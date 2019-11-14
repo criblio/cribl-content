@@ -23,7 +23,7 @@ exports.init = (opts) => {
     const isCtrlField = field.name.startsWith(CTRL_PREFIX);
     add.push(isCtrlField);
     add.push(isCtrlField ? field.name.substr(CTRL_PREFIX.length) : field.name);
-    add.push(new Expression(`${field.value}`, { disallowAssign: true }));
+    add.push(new Expression(`${field.value}`, { disallowAssign: true, insecure: true }));
   });
 
   fields2add = add;
@@ -31,23 +31,24 @@ exports.init = (opts) => {
 
 
 exports.process = (event) => {
-  // add/replace some fields
-  for (let i = 2; i < fields2add.length; i += 3) {
+  try {
     const dom = new JSDOM(event[conf.htmlField]);
     event.$ = (require('jquery'))(dom.window);
+    // add/replace some fields
+    for (let i = 2; i < fields2add.length; i += 3) {
+      const key = fields2add[i - 1];
+      const val = fields2add[i].evalOn(event);
 
-    const key = fields2add[i - 1];
-    const val = fields2add[i].evalOn(event);
-
-    delete event.$;
-
-    if (!fields2add[i - 2]) {
-      if (key) { // might need to throw away the result
-        event[key] = val;
+      if (!fields2add[i - 2]) {
+        if (key) { // might need to throw away the result
+          event[key] = val;
+        }
+      } else {
+        event.setCtrlField(key, val);
       }
-    } else {
-      event.setCtrlField(key, val);
     }
-  }
+  } catch(ignore){}
+
+  delete event.$;
   return event;
 };
