@@ -10,7 +10,7 @@
   "author": "Clint Sharp",
   "license": "MIT",
   "dependencies": {
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jsdom": "^15.0.0"
   },
   "devDependencies": {}
