@@ -1,0 +1,27 @@
+{
+  "conf": {
+    "output": "default",
+    "groups": {},
+    "asyncFuncTimeout": 1000,
+    "functions": [
+      {
+        "filter": "true",
+        "conf": {
+          "mode": "extract",
+          "type": "kvp",
+          "srcField": "_raw",
+          "keep": [
+            "a",
+            "b",
+            "c"
+          ],
+          "remove": [
+            "*"
+          ]
+        },
+        "id": "serde"
+      }
+    ]
+  },
+  "id": "parser2"
+}

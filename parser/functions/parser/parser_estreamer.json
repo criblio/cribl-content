@@ -1,0 +1,51 @@
+{
+  "id": "cisco_estreamer22",
+  "conf": {
+    "functions": [
+      {
+        "id": "comment",
+        "filter": "true",
+        "conf": {
+          "comment": "Use the Parser function in K=V mode to re-write original events satisfying these conditions:\n* Keep all fields enumerated in the \"Fields To Keep\", regardless of their values.\n* Remove fields with no value.\n* Remove fields with value 'N/A'.\n* Remove fields with '0', '-' or ':' only.\n* Remove fields with value '[Uu]nknown'\n"
+        }
+      },
+      {
+        "filter": "true",
+        "conf": {
+          "mode": "reserialize",
+          "type": "kvp",
+          "srcField": "_raw",
+          "fields": [],
+          "keep": [
+            "dest_port",
+            "dest_ip",
+            "dest_bytes",
+            "src_port",
+            "web_app",
+            "src_ip",
+            "iface_ingress",
+            "fw_rule_reason",
+            "client_app",
+            "fw_rule_action",
+            "sec_zone_ingress",
+            "src_bytes",
+            "user_agent",
+            "http_response",
+            "fw_policy",
+            "ip_proto",
+            "dest_pkts",
+            "app_proto",
+            "fw_rule",
+            "sensor"
+          ],
+          "remove": [],
+          "fieldFilterExpr": "!(value.length==0 || value=='N/A' || value.match(/^[0\\-:]+$/) || value.toLowerCase()=='unknown')",
+          "dstField": "_dest"
+        },
+        "id": "serde",
+        "description": "Rewrite events with required fields only."
+      }
+    ],
+    "groups": {}
+  }
+}
