@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "title": "",
+  "properties": {
+    "collection": {
+      "type": "string",
+      "title": "collection",
+      "description": "KV store to post data to",
+      "regexp": false
+    },
+    "application": {
+      "type": "string",
+      "title": "app",
+      "description": "Splunk application for KV store",
+      "regexp": false
+    },
+    "username": {
+      "type": "string",
+      "title": "User Name",
+      "description": "Username for KV store",
+      "regexp": false
+    },
+    "password": {
+      "type": "string",
+      "title": "Password",
+      "description": "Password for KV store",
+      "regexp": false
+    },
+    "filter":{
+      "type":"string",
+      "title": "Filter",
+      "description": "Filter to determine what KV store entry to update",
+      "regexp": false
+    },
+    "updateme": {
+      "title": "Fields to add/update",
+      "description": "List of fields to update. Must match the original event.",
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}
