@@ -1,0 +1,17 @@
+{
+  "fields": {
+    "ui:field": "Table",
+    "items": {
+      "fieldName": {
+        "ui:options": {
+          "columnWidth": "50%"
+        }
+      },
+      "renameTo": {
+        "ui:options": {
+          "columnWidth": "50%"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "title": "",
+  "additionalProperties": false,
+  "properties": {
+    "fields": {
+      "title": "Fields to Rename",
+      "description": "List of field names to rename",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["fieldName","renameTo"],
+        "properties": {
+          "fieldName": {
+            "type": "string",
+            "title": "Event Field Name",
+            "description": "Field Name"
+          },
+          "renameTo": {
+            "type": "string",
+            "title": "New Field Name",
+            "description": "New field name"
+          }
+        }
+      }
+    }
+  }
+}
